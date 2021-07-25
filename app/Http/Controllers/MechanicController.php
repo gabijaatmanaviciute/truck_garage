@@ -90,6 +90,9 @@ class MechanicController extends Controller
      */
     public function destroy(Mechanic $mechanic)
     {
+        if($mechanic->mechanicHasTrucks->count()){
+            return 'Trinti negalima, nes turi tvarkomų mašinų';
+        } 
         $mechanic->delete();
         return redirect()->route('mechanic.index');
     }
